@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sentiment": "^1.0.5",
-    "twit": "^2.1.1"
+    "sentiment": "^1.0.5"
   }
 }
