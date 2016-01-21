@@ -1,0 +1,57 @@
+body{
+	width:100vw;
+	height:100vh;
+	margin:0;
+	font-family: Helvetica;
+	font-weight:lighter;
+	text-align:center;
+}
+
+div{
+	margin:0;
+}
+
+header{
+	height:10vh;
+}
+
+#logo{
+	height:8vh;
+	margin-top:1vh;
+	width:auto;
+	margin-left:1vh;
+}
+
+#option_1{
+	height:26.6vh;
+}
+#option_2{
+	height:26.6vh;
+}
+#option_3{
+	height:26.6vh;
+}
+
+.add{
+	color:green;
+}
+.subtract{
+	color:red;
+}
+footer{
+	font-weight:lighter;
+	height:10vh;
+	color:white;
+	background-color:#4099FF;
+	font-size:8vh;
+}
+
+p{
+	margin:0;
+	line-height:26.6vh;
+	font-size:4vh;
+}
+
+.cost{
+	font-size:2.5vh;
+}
