@@ -2,6 +2,11 @@
 var credits = 1000;
 var search_term = " ";
 
+var logo = document.getElementById("logo");
+logo.addEventListener("click", function(event) {
+  returnHome();
+});
+
 var option_1 = document.getElementById("read");
 option_1.addEventListener("click", function(event){
   credits = credits + 100;
@@ -15,25 +20,25 @@ var option_2 = document.getElementById("advertise");
 option_2.addEventListener("click", function(event){
   credits = credits + 200;
   document.getElementById("initial_options").style.display = "none";
-  document.getElementById("tweet_options").style.display = "none";
+  document.getElementById("tweet_options").style.display = "inherit";
+  document.getElementById("search").style.display = "none";
   document.getElementById("points").innerHTML = credits;
+
+  getAds();
 });
 
 var option_3 = document.getElementById("compose");
 option_3.addEventListener("click", function(event){
   credits = credits - 150;
   document.getElementById("initial_options").style.display = "none";
-  document.getElementById("tweet_options").style.display = "inherit";
+  document.getElementById("tweet_options").style.display = "none";
   document.getElementById("points").innerHTML = credits;
 });
 
 var search_tweets = document.getElementById("search_logo");
 search_tweets.addEventListener("click", function(event){
 
-  document.getElementById("tweet_collection").style.display = "inherit";
-
   document.getElementById("points").innerHTML = credits;
-
   search_term = document.getElementById("search_query").value;
 
   getTweets(search_term);
@@ -73,6 +78,7 @@ function returnHome() {
   document.getElementById("initial_options").style.display = "inherit";
   document.getElementById("tweet_options").style.display = "none";
   document.getElementById("tweet_collection").style.display = "none";
+  document.getElementById("search").style.display = "inherit";
 }
 
 
@@ -90,6 +96,8 @@ function displayTweets(tweets){
 
   document.getElementById("user_3").innerHTML = tweets[2].user.screen_name;
   document.getElementById("collected_tweet_3").innerHTML = tweets[2].text;
+
+  document.getElementById("tweet_collection").style.display = "inherit";
 }
 
 
@@ -101,7 +109,7 @@ function searchTweets(subject) {
     url: 'get_tweets.php?q=' + subject,
     type: 'GET',
     success: function(response) {
-      console.log(response);
+      // console.log(response);
       scoredTweets = [];
 
       for (var i = 0; i < response.statuses.length; i++) {
@@ -116,12 +124,12 @@ function searchTweets(subject) {
         return a.sentiment - b.sentiment;
       } );
 
-      console.log("highest");
-      console.log(scoredTweets[0]);
-      console.log("lowest");
-      console.log(scoredTweets[scoredTweets.length - 1]);
-      console.log("middle");
-      console.log(scoredTweets[scoredTweets.length/2]);
+      // console.log("highest");
+      // console.log(scoredTweets[0]);
+      // console.log("lowest");
+      // console.log(scoredTweets[scoredTweets.length - 1]);
+      // console.log("middle");
+      // console.log(scoredTweets[scoredTweets.length/2]);
 
       var tweetsArray = [scoredTweets[0].tweet, scoredTweets[scoredTweets.length/2].tweet, scoredTweets[scoredTweets.length - 1].tweet];
 
@@ -134,4 +142,12 @@ function searchTweets(subject) {
 
 }
 
+const ads = [ { user: { screen_name: "@TryMaple"}, text: "Hey. Over here. It's me, Maple. A delicious new way to enjoy lunch and dinner, delivered to your door, $15 or less."},
+              { user: { screen_name: "@Equinox"}, text: "Commit to Equinox this January. Or commit to them. Just #CommitToSomething"},
+              { user: { screen_name: "@forwardJS"}, text: "Advance tickets to Forward Web Summit are running out. Reserve your seat today"},
+];
+
+function getAds() {
+  displayTweets(ads);
+}
 
